@@ -1,4 +1,3 @@
-
 // Creates a new board with a set of mines
 // the board must be square, eg. 4, 9, 16, 25 cells etc
 // Returns the board
