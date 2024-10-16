@@ -33,7 +33,6 @@ function calculateNeighbours(board) {
   const rowSize = getRowSize(board.length);
   for (let i = 0; i < board.length; i++) {
     // Change if cell has mine to B
-    // FRÅGA MARTIN OM MAN FÅR ÄNDRA I UTILS
     if (board[i].hasMine === true) {
       board[i].numberOfNeighbouringMines = "B";
       continue;
