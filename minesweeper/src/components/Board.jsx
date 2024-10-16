@@ -7,8 +7,10 @@ export default class Board extends React.Component {
     super(props);
 
     this.state = {
-      board: createBoard(32, 10)
+      board: createBoard(32, 10),
     }
+    
+    console.log(this.state.board)
   }
 
   render() {

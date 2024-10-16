@@ -32,6 +32,12 @@ function createBoard(boardSize, numberOfMines) {
 function calculateNeighbours(board) {
   const rowSize = getRowSize(board.length);
   for (let i = 0; i < board.length; i++) {
+    // Change if cell has mine to B
+    // FRÅGA MARTIN OM MAN FÅR ÄNDRA I UTILS
+    if (board[i].hasMine === true) {
+      board[i].numberOfNeighbouringMines = "B";
+      continue;
+    }
     // Check row above
     board = calculateRow(i, getRow(i - rowSize, rowSize), board, rowSize);
     // Check row below
@@ -41,7 +47,7 @@ function calculateNeighbours(board) {
     if (checkCell(i - 1, thisRow, board)) {
       board[i].numberOfNeighbouringMines++;
     }
-    // Cehck cell to right
+    // Check cell to right
     if (checkCell(i + 1, thisRow, board)) {
       board[i].numberOfNeighbouringMines++;
     }
