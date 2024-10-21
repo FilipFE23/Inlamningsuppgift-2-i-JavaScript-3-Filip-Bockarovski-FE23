@@ -7,26 +7,37 @@ export default class Board extends React.Component {
     super(props);
 
     this.state = {
-      board: createBoard(36, 10)
+      board: createBoard(36, 2),
+      inGame: true,
+      won: false
     };
 
     this.onClick = this.onClick.bind(this);
   }
-  
-  onClick(visible, index) {
-    console.log('In onClick Board.jsx', visible);
-    console.log('In onClick Board.jsx', index);
-    // Ändra visible i this.state.board
-    // Bättre namn på parametrar
+
+  onClick(index) {
+    if (this.state.inGame) {
+      const updatedBoard = this.state.board.map((cell) => {
+        if (cell.index === index) {
+          return { ...cell, visible: true };
+        }
+        return cell;
+      });
+      if (this.state.board[index].hasMine) {
+        this.setState({ inGame: false })
+      }
+      this.setState({ board: updatedBoard });
+    }
   }
-  
-  
-  
+
   render() {
-    return(
+    return (
       <div className="container">
-        <Cell cell={this.state.board} onClick={this.onClick}/>
+        <Cell cell={this.state.board} onClick={this.onClick} />
+        {!this.state.inGame && (
+          <h1>Game Over</h1>
+        )}
       </div>
-    )
+    );
   }
 }
