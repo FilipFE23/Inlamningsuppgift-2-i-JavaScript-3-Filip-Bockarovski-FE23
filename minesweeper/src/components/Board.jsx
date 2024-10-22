@@ -9,14 +9,14 @@ export default class Board extends React.Component {
     this.state = {
       board: createBoard(36, 2),
       inGame: true,
-      won: false
+      won: false,
     };
 
     this.onClick = this.onClick.bind(this);
   }
 
   onClick(index) {
-    if (this.state.inGame) {
+    if (this.state.inGame && !this.state.won) {
       const updatedBoard = this.state.board.map((cell) => {
         if (cell.index === index) {
           return { ...cell, visible: true };
@@ -24,7 +24,7 @@ export default class Board extends React.Component {
         return cell;
       });
       if (this.state.board[index].hasMine) {
-        this.setState({ inGame: false })
+        this.setState({ inGame: false });
       }
       this.setState({ board: updatedBoard });
     }
@@ -33,10 +33,9 @@ export default class Board extends React.Component {
   render() {
     return (
       <div className="container">
-        <Cell cell={this.state.board} onClick={this.onClick} />
-        {!this.state.inGame && (
-          <h1>Game Over</h1>
-        )}
+        
+        <Cell cell={this.state.board} onClick={this.onClick} /> 
+        {!this.state.inGame && <h1>Game Over</h1>}
       </div>
     );
   }
