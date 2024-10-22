@@ -33,7 +33,6 @@ export default class Board extends React.Component {
   render() {
     return (
       <div className="container">
-        
         <Cell cell={this.state.board} onClick={this.onClick} /> 
         {!this.state.inGame && <h1>Game Over</h1>}
       </div>
