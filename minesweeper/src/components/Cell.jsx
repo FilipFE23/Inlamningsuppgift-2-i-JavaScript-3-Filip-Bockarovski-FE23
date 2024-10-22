@@ -2,18 +2,16 @@ import React from "react";
 
 export default function Cell(props) {
   const showCell = (index) => {
-    if (!props.cell[index].visible) {
+    if (!props.cell.visible) {
       props.onClick(index);
     }
   };
 
   return (
     <>
-      {props.cell.map((box, i) => (
-        <p className="box" key={i} onClick={() => showCell(i)}>
-          {box.visible ? box.numberOfNeighbouringMines : ""}
-        </p>
-      ))}
+      <p className="cell" onClick={() => showCell(props.cell.index)}>
+        {props.cell.visible ? props.cell.numberOfNeighbouringMines : ""}
+      </p>
     </>
   );
 }
